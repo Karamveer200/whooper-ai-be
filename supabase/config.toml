@@ -1,0 +1,5 @@
+# Supabase local development config
+# https://supabase.com/docs/guides/cli/config
+
+[functions.process-released-payments]
+verify_jwt = false

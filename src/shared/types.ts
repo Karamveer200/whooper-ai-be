@@ -8,6 +8,7 @@ export type TaskStatus =
   | 'submitted'
   | 'reviewed'
   | 'released'
+  | 'completed'
   | 'disputed'
   | 'cancelled'
 

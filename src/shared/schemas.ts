@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { FIELD_LIMITS, countWords } from './field-limits'
 
 export const userRoleSchema = z.enum(['business', 'worker'])
 
@@ -10,6 +11,7 @@ export const taskStatusSchema = z.enum([
   'submitted',
   'reviewed',
   'released',
+  'completed',
   'disputed',
   'cancelled',
 ])
@@ -84,7 +86,7 @@ export const disputeSchema = z.object({
 })
 
 export const releasePaymentSchema = z.object({
-  release_tx_hash: z.string().min(10),
+  submission_id: z.string().uuid().optional(),
 })
 
 export const taskBuilderRequestSchema = z.object({

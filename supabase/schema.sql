@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS tasks (
   token_symbol TEXT DEFAULT 'USDC',
   chain TEXT DEFAULT 'base',
   status TEXT NOT NULL DEFAULT 'draft'
-    CHECK (status IN ('draft','open','funded','accepted','submitted','reviewed','released','disputed','cancelled')),
+    CHECK (status IN ('draft','open','funded','accepted','submitted','reviewed','released','completed','disputed','cancelled')),
   required_skills TEXT[] DEFAULT '{}',
   deadline TIMESTAMPTZ,
   escrow_tx_hash TEXT,
@@ -74,9 +74,11 @@ CREATE TABLE IF NOT EXISTS task_submissions (
   status TEXT NOT NULL DEFAULT 'submitted'
     CHECK (status IN ('submitted','reviewed','revision_requested','approved','rejected','disputed')),
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE(task_id)
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+CREATE INDEX idx_task_submissions_task_created
+  ON task_submissions (task_id, created_at ASC);
 
 CREATE TRIGGER task_submissions_updated_at
   BEFORE UPDATE ON task_submissions
