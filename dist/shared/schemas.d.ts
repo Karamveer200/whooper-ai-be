@@ -1,6 +1,6 @@
 import { z } from 'zod';
 export declare const userRoleSchema: z.ZodEnum<["business", "worker"]>;
-export declare const taskStatusSchema: z.ZodEnum<["draft", "open", "funded", "accepted", "submitted", "reviewed", "released", "disputed", "cancelled"]>;
+export declare const taskStatusSchema: z.ZodEnum<["draft", "open", "funded", "accepted", "submitted", "reviewed", "released", "completed", "disputed", "cancelled"]>;
 export declare const checklistItemSchema: z.ZodObject<{
     criterion: z.ZodString;
     met: z.ZodBoolean;
@@ -168,11 +168,11 @@ export declare const disputeSchema: z.ZodObject<{
     reason: string;
 }>;
 export declare const releasePaymentSchema: z.ZodObject<{
-    release_tx_hash: z.ZodString;
+    submission_id: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    release_tx_hash: string;
+    submission_id?: string | undefined;
 }, {
-    release_tx_hash: string;
+    submission_id?: string | undefined;
 }>;
 export declare const taskBuilderRequestSchema: z.ZodObject<{
     rough_idea: z.ZodString;
@@ -191,11 +191,11 @@ export declare const reviewSubmissionRequestSchema: z.ZodObject<{
     task_id: z.ZodString;
     submission_id: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    task_id: string;
     submission_id: string;
+    task_id: string;
 }, {
-    task_id: string;
     submission_id: string;
+    task_id: string;
 }>;
 export declare const generateTaskRequestSchema: z.ZodObject<{
     rough_idea: z.ZodString;
@@ -232,12 +232,12 @@ export declare const disputeSummaryRequestSchema: z.ZodObject<{
     reason: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     reason: string;
-    task_id: string;
     submission_id: string;
+    task_id: string;
 }, {
     reason: string;
-    task_id: string;
     submission_id: string;
+    task_id: string;
 }>;
 export type SyncProfileInput = z.infer<typeof syncProfileSchema>;
 export type CreateTaskInput = z.infer<typeof createTaskSchema>;

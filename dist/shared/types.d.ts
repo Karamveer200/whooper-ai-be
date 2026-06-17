@@ -1,5 +1,5 @@
 export type UserRole = 'business' | 'worker';
-export type TaskStatus = 'draft' | 'open' | 'funded' | 'accepted' | 'submitted' | 'reviewed' | 'released' | 'disputed' | 'cancelled';
+export type TaskStatus = 'draft' | 'open' | 'funded' | 'accepted' | 'submitted' | 'reviewed' | 'released' | 'completed' | 'disputed' | 'cancelled';
 export type SubmissionStatus = 'submitted' | 'reviewed' | 'revision_requested' | 'approved' | 'rejected' | 'disputed';
 export type PaymentStatus = 'pending_escrow' | 'escrowed' | 'release_pending' | 'released' | 'failed' | 'refunded';
 export type DisputeStatus = 'open' | 'resolved_for_business' | 'resolved_for_worker' | 'cancelled';

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { FIELD_LIMITS, countWords } from './field-limits'
+import { FIELD_LIMITS, countWords } from './field-limits.js'
 
 export const userRoleSchema = z.enum(['business', 'worker'])
 

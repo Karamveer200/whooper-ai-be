@@ -8,6 +8,7 @@ export const taskStatusSchema = z.enum([
     'submitted',
     'reviewed',
     'released',
+    'completed',
     'disputed',
     'cancelled',
 ]);
@@ -73,7 +74,7 @@ export const disputeSchema = z.object({
     reason: z.string().min(10).max(2000),
 });
 export const releasePaymentSchema = z.object({
-    release_tx_hash: z.string().min(10),
+    submission_id: z.string().uuid().optional(),
 });
 export const taskBuilderRequestSchema = z.object({
     rough_idea: z.string().min(10).max(5000),
